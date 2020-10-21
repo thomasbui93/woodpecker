@@ -1,1 +1,1 @@
-console.log('Funny characters!')
+import "reflect-metadata"
