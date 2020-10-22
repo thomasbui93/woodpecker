@@ -7,7 +7,7 @@ import ResourceApi from '../services/resources/Resource';
 function getOrElse(query: ParsedQs, key: string, defaultValue: number): number {
   if (query[key]) {
     const result = (query as any)[key];
-    if (Number.isNaN(result)) return parseInt(result, 10);
+    if (!Number.isNaN(result)) return parseInt(result, 10);
     return defaultValue;
   }
 

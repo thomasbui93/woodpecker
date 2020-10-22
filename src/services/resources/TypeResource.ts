@@ -4,19 +4,19 @@ import { Type } from '../../entity/Type';
 import ResourceApi from './Resource';
 import ResourceNotFoundException from '../../exceptions/validation/ResourceNotFoundException';
 
-const fromBody = function (body: Partial<Type>) {
+function fromBody(body: Partial<Type>) {
   const type = new Type();
   type.name = body.name;
   type.description = body.description;
   return type;
-};
+}
 
 export default async function getTypeResource(): Promise<ResourceApi<Type>> {
   const typeRepository = await getDatabase().then((db) => db.getRepository<Type>(Type));
   return {
     get(page: number, size: number): Promise<Type[]> {
       return typeRepository.find({
-        take: page,
+        take: size,
         skip: page * size,
       });
     },
