@@ -1,7 +1,7 @@
-import pino from 'pino'
+import pino from 'pino';
 
 const logger = pino().child({
-  root: 'bison'
-})
+  root: 'bison',
+});
 
-export default logger
+export default logger;

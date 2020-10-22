@@ -1,6 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn} from "typeorm";
-import { Category } from "./Category";
-import { Tag } from "./Tag";
+import {
+  Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn,
+} from 'typeorm';
+import { Category } from './Category';
+import { Tag } from './Tag';
 
 @Entity()
 export class Content {
@@ -18,7 +20,7 @@ export class Content {
 
     @Column()
     isPublished: boolean;
-    
+
     @Column()
     publishedAt: Date;
 
@@ -28,12 +30,12 @@ export class Content {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @ManyToOne(() => Category, category => category.contents)
+    @ManyToOne(() => Category, (category) => category.contents)
     category: Content[]
 
     @ManyToMany(() => Tag)
     @JoinTable({
-        name: "question_categories"
+      name: 'question_categories',
     })
     tags: Tag[]
 }

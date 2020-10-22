@@ -1,6 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn} from "typeorm";
-import { Content } from "./Content";
-import { Type } from "./Type";
+import {
+  Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn,
+} from 'typeorm';
+import { Content } from './Content';
+import { Type } from './Type';
 
 @Entity()
 export class Category {
@@ -13,10 +15,10 @@ export class Category {
     @Column()
     description: string;
 
-    @ManyToOne(() => Type, type => type.categories)
+    @ManyToOne(() => Type, (type) => type.categories)
     type: Type
 
-    @OneToMany(() => Content, content => content.category)
+    @OneToMany(() => Content, (content) => content.category)
     contents: Content[]
 
     @CreateDateColumn()

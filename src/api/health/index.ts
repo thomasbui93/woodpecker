@@ -1,15 +1,17 @@
-import { NextFunction, Request, Response, Router } from 'express'
-import healthCheck from '../../services/health'
+import {
+  NextFunction, Request, Response, Router,
+} from 'express';
+import healthCheck from '../../services/health/index';
 
-const router = Router()
+const router = Router();
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const components = await healthCheck()
-    res.status(200).json(components)
+    const components = await healthCheck();
+    res.status(200).json(components);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
-export default router
+export default router;

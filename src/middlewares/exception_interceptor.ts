@@ -1,8 +1,9 @@
-import { NextFunction, Request, Response } from 'express'
-import logger from '../helpers/logger'
+import { NextFunction, Request, Response } from 'express';
+import logger from '../helpers/logger';
+
 const log = logger.child({
-  name: 'exceptionInterceptor'
-})
+  name: 'exceptionInterceptor',
+});
 
 const getStatus = (err: Error): number => {
   switch (err.name) {
@@ -10,21 +11,21 @@ const getStatus = (err: Error): number => {
     case 'SystemUserRemovalException':
     case 'SystemUserSearchFailed':
     case 'DeactivateUserFailure':
-      return 400
+      return 400;
     case 'SystemUserAuthenticationFailed':
     case 'NormalUserAuthenticationFailed':
     case 'TokenAuthenticationException':
     case 'AdminAuthenticationFailure':
     case 'ChangePasswordFailure':
-      return 401
+      return 401;
     default:
-      return 500
+      return 500;
   }
-}
+};
 
 export default function exceptionInterceptor(err: Error, req: Request, res: Response, next: NextFunction) {
   if (res.headersSent) {
-    return next(err)
+    return next(err);
   }
 
   log.error({
@@ -32,10 +33,10 @@ export default function exceptionInterceptor(err: Error, req: Request, res: Resp
     method: req.method,
     body: req.body,
     stack: err.stack,
-  }, 'Uncaught exception.')
+  }, 'Uncaught exception.');
 
   return res.status(getStatus(err)).send({
     error: true,
     message: err.message,
-  })
+  });
 }
