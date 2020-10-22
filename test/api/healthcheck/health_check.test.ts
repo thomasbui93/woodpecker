@@ -3,7 +3,7 @@ import setupServer from '../../../src/bootstrap/server';
 
 describe('health check', () => {
   it('should fetch health check', async () => {
-    const app = setupServer();
+    const app = await setupServer();
     const res = await request(app)
       .get('/z/ping')
       .send();
