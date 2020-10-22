@@ -2,11 +2,11 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es2019",
+    "target": "esnext",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "build",
     "baseUrl": "src",
     "paths": {
       "*": [
@@ -15,8 +15,7 @@
       ]
     },
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "lib": [ "ES2020.Promise" ]
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts"
