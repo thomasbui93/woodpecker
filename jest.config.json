@@ -9,5 +9,6 @@
     "^.+\\.ts$": "ts-jest"
   },
   "testMatch": ["**/test/**/*.test.ts"],
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "coveragePathIgnorePatterns": ["/node_modules/", "build", "src/migrations"]
 }

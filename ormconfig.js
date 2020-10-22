@@ -1,4 +1,4 @@
-import { config } from 'dotenv'
+const { config } = require('dotenv')
 
 config()
 
@@ -12,10 +12,10 @@ module.exports = {
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts"
+      "build/entity/**/*.js"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "build/migrations/**/*.js"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"
