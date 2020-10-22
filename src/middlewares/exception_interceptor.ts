@@ -9,6 +9,8 @@ const getStatus = (err: Error): number => {
   switch (err.name) {
     case 'InvalidInputException':
       return 400;
+    case 'ResourceNotFoundException':
+      return 404;
     default:
       return 500;
   }

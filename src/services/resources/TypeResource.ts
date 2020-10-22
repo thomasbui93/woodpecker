@@ -2,6 +2,7 @@ import validateBody from '../../helpers/resource_validator';
 import getDatabase from '../../bootstrap/database';
 import { Type } from '../../entity/Type';
 import ResourceApi from './Resource';
+import ResourceNotFoundException from '../../exceptions/validation/ResourceNotFoundException';
 
 const fromBody = function (body: Partial<Type>) {
   const type = new Type();
@@ -26,17 +27,19 @@ export default async function getTypeResource(): Promise<ResourceApi<Type>> {
 
       return type;
     },
-    read(id: string | number): Promise<Type> {
-      return typeRepository.findOne(id);
+    async read(id: string | number): Promise<Type> {
+      const type = await typeRepository.findOne(id);
+      if (!type) throw new ResourceNotFoundException('Type not found.');
+      return type;
     },
     async delete(id: string | number): Promise<boolean> {
-      const { affected } = await typeRepository.delete(id);
-      return affected >= 1;
+      await typeRepository.delete(id);
+      return true;
     },
     async update(id: string | number, body: Partial<Type>) : Promise<Type> {
       const type = fromBody(body);
       await typeRepository.update(id, type);
-      return typeRepository.findOne(id);
+      return this.read(id);
     },
   };
 }
