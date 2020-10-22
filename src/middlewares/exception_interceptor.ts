@@ -7,17 +7,8 @@ const log = logger.child({
 
 const getStatus = (err: Error): number => {
   switch (err.name) {
-    case 'SystemUserCreateException':
-    case 'SystemUserRemovalException':
-    case 'SystemUserSearchFailed':
-    case 'DeactivateUserFailure':
+    case 'InvalidInputException':
       return 400;
-    case 'SystemUserAuthenticationFailed':
-    case 'NormalUserAuthenticationFailed':
-    case 'TokenAuthenticationException':
-    case 'AdminAuthenticationFailure':
-    case 'ChangePasswordFailure':
-      return 401;
     default:
       return 500;
   }

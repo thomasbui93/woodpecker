@@ -9,7 +9,7 @@ export function afterStartup(port: any) {
   console.log(`The application has started on port: ${port}`);
 }
 
-export default function setupServer() {
+export default async function setupServer(): Promise<Express> {
   const app: Express = express();
   app.use(bodyParser.urlencoded({
     extended: true,
@@ -19,8 +19,7 @@ export default function setupServer() {
   app.use(compression({
     level: 9,
   }));
-  routes(app);
+  await routes(app);
   app.use(exceptionInterceptor);
-
   return app;
 }
