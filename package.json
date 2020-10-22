@@ -1,7 +1,7 @@
 {
-   "name": "otter",
+   "name": "woodpecker",
    "version": "0.0.1",
-   "description": "Otter - Typescript starter template",
+   "description": "Woodpecker - Woodpecker CMS system.",
    "main": "src/index.ts",
    "scripts": {
       "prestart": "npm install && npm run build",
