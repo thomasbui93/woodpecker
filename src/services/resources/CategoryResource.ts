@@ -21,6 +21,8 @@ async function validate(body: Partial<Category>, typeCategory: Repository<Type>)
   if (entity.type) {
     entity.type = await typeCategory.findOne(entity.type);
     if (!entity.type) throw new InvalidInputException('Category: type is invalid.');
+  } else {
+    throw new InvalidInputException('Category: type is invalid.');
   }
   return entity;
 }
@@ -52,8 +54,9 @@ export default async function getCategoryResource(): Promise<ResourceApi<Categor
       return true;
     },
     async update(id: string | number, body: Partial<Category>) : Promise<Category> {
-      const type = fromBody(body);
-      await categoryRepository.update(id, type);
+      const cat = await validate(body, typeCategory);
+      const category = fromBody(cat);
+      await categoryRepository.update(id, category);
       return this.read(id);
     },
   };
