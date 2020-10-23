@@ -21,8 +21,6 @@ async function validate(body: Partial<Category>, typeCategory: Repository<Type>)
   if (entity.type) {
     entity.type = await typeCategory.findOne(entity.type);
     if (!entity.type) throw new InvalidInputException('Category: type is invalid.');
-  } else {
-    throw new InvalidInputException('Category: type is invalid.');
   }
   return entity;
 }
