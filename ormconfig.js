@@ -2,6 +2,8 @@ const { config } = require('dotenv')
 
 config()
 
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
    "type": process.env.SQL_TYPE,
    "host": process.env.SQL_HOST,
@@ -12,6 +14,7 @@ module.exports = {
    "synchronize": true,
    "logging": false,
    "entities": [
+      //isProd ? "src/entity/**/*.ts": "build/entity/**/*.js"
       "src/entity/**/*.ts"
    ],
    "migrations": [
