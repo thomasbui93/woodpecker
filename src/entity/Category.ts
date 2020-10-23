@@ -15,7 +15,9 @@ export class Category {
     @Column()
     description: string;
 
-    @ManyToOne(() => Type, (type) => type.categories)
+    @ManyToOne(() => Type, (type) => type.categories, {
+      eager: true,
+    })
     type: Type
 
     @OneToMany(() => Content, (content) => content.category)

@@ -19,7 +19,7 @@ export class InitialMigration1603376631115 implements MigrationInterface {
                 description VARCHAR(255) NOT NULL,
                 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                typeId INT,
+                typeId INT NOT NULL,
                 CONSTRAINT fk_type FOREIGN KEY (typeId) REFERENCES types(id)
             );
         `);
@@ -34,7 +34,7 @@ export class InitialMigration1603376631115 implements MigrationInterface {
                 publishedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                categoryId INT,
+                categoryId INT NOT NULL,
                 CONSTRAINT fk_category FOREIGN KEY (categoryId) REFERENCES categories(id)
             );
         `);
